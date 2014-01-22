@@ -1,4 +1,4 @@
-transmit-mix
+transit-mix
 ============
 
-Transmix Mix FTW.
+Transit Mix FTW.
