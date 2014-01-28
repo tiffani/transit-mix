@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  latitude: 9.99
+  longitude: 9.99
+  route_id: 1
+
+two:
+  latitude: 9.99
+  longitude: 9.99
+  route_id: 1

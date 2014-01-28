@@ -1,10 +1,11 @@
 var transitmix = transitmix || {};
+var tmroutes = [];
 
 transitmix.Route = Backbone.Model.extend({
   urlRoot: '/en/routes',
 
   url: function() {
-    var base = "http://127.0.0.1:8181/route";
+    var base = "http://127.0.0.1:8181/routes";
     if(this.isNew()) return base + '.json';
     else return base + this.id + '.json';
   },
@@ -15,12 +16,7 @@ transitmix.Route = Backbone.Model.extend({
 });
 
 transitmix.Routes = Backbone.Collection.extend({
-  model: transitmix.Route,
-  url: function() {
-    var base = "http://127.0.0.1:8181/routes"
-    if(this.isNew()) return base + '.json';
-    else return base + this.id + '.json';
-  }
+  model: transitmix.Route
 });
 
 transitmix.MainView = Backbone.View.extend({
@@ -77,6 +73,7 @@ transitmix.MainView = Backbone.View.extend({
       this.newLine = L.polyline([latlng], options).addTo(this.map);
     } else {
       this.newLine.addLatLng(latlng);
+      tmroutes.push(this.newLine.toGeoJSON());
 
       // Insert button to finish drawing.
       // TODO: Refactor this and other drawing code into seperate view.
@@ -130,7 +127,8 @@ transitmix.MainView = Backbone.View.extend({
     this.showingDoneButton = false;
 
     var travelRoute = new transitmix.Route();
-    travelRoute.fetch({ method: "POST", data: [] });
+    //console.log(JSON.stringify(this.collection));
+    travelRoute.fetch({ method: "POST", data: { "routes": JSON.stringify(this.collection) } });
   },
 
   render: function() {
