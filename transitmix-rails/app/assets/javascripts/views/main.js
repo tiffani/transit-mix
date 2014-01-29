@@ -30,8 +30,10 @@ tm.MainView = Backbone.View.extend({
     var lineView = new tm.LineView({model: route});
     lineView.render(); // no need to appened, goes through mapbox
 
-    var blockView = new tm.BlockView({model: route});
-    $('#routes').append(blockView.render().el);
+    if (!tm.showingAggregate) {
+      var blockView = new tm.BlockView({model: route});
+      $('#routes').append(blockView.render().el);
+    }
   },
 
   addAll: function() {

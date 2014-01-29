@@ -3,12 +3,17 @@ tm.Route = Backbone.Model.extend({
     return 'http://' + window.location.host + '/mixes/' + tm.mix.get('id') + '/routes';
   },
 
-  defaults: {
-    name: 'unnamed',
-    description: 'no desc',
-    color: '#0D7215',
-    type: 'bus',
-    polyline: [],
+  defaults: function() {
+    var colors = ['#0D7215', '#AD0101', '#0071CA'];
+    var randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+    return {
+      name: 'unnamed',
+      description: 'no desc',
+      color: randomColor,
+      type: 'bus',
+      polyline: [],
+    }
   },
 
   addPoint: function(point) {

@@ -20,6 +20,11 @@ tm.LineView = Backbone.View.extend({
     };
 
     this.line = L.polyline(latlngs, options).addTo(this.map);
+    if (tm.showingAggregate) {
+      this.line.on('click', function() {
+        tm.router.navigate("mix/" + this.model.get('mixId'), {trigger: true});
+      }, this);
+    }
   },
 
   updateLine: function() {
