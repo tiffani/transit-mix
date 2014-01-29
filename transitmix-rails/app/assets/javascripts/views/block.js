@@ -3,7 +3,7 @@
 tm.BlockView = Backbone.View.extend({
   template: _.template($('#tmpl-route').html()),
 
-  className: 'block route bus redroute',
+  className: 'route bus redroute',
 
   events: {
     'click': 'select',
@@ -21,10 +21,10 @@ tm.BlockView = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template(this.model.toJSON()));
     this.$el.css({ "background-color": this.model.get('color') });
+    this.$el.addClass(this.model.get('type'))
     
     var mode = this.model.getMode();
     mode === 'editing' ? this.$('.newroute').show() : this.$('.newroute').hide();
-    // mode === 'selected' ? this.$('') somehow highlight it a bit...
 
     return this;
   },

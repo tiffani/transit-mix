@@ -41,7 +41,6 @@ tm.DefaultRouter = Backbone.Router.extend({
           r.mixId = id;
           allRoutes.push(r);
         });
-        //allRoutes = allRoutes.concat(mix.routes);
       });
 
       tm.routes.reset(allRoutes);

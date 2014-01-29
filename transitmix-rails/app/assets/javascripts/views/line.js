@@ -19,6 +19,11 @@ tm.LineView = Backbone.View.extend({
       weight: 10,
     };
 
+    if (tm.showingAggregate) {
+      options.opacity = 0.5;
+      options.weight = 5;
+    }
+
     this.line = L.polyline(latlngs, options).addTo(this.map);
     if (tm.showingAggregate) {
       this.line.on('click', function() {

@@ -7,11 +7,14 @@ tm.Route = Backbone.Model.extend({
     var colors = ['#0D7215', '#AD0101', '#0071CA'];
     var randomColor = colors[Math.floor(Math.random() * colors.length)];
 
+    var type = ['train', 'bus'];
+    var randomType = type[Math.floor(Math.random() * type.length)];
+
     return {
       name: 'unnamed',
       description: 'no desc',
       color: randomColor,
-      type: 'bus',
+      type: randomType,
       polyline: [],
     }
   },
