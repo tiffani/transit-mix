@@ -29,6 +29,15 @@ tm.LineView = Backbone.View.extend({
       this.line.on('click', function() {
         tm.router.navigate("mix/" + this.model.get('mixId'), {trigger: true});
       }, this);
+    } else {
+      this.line.on('click', function() {
+        var mode = this.model.getMode();
+        if (mode === 'viewing') {
+          this.model.setMode('selected');
+        } else if (mode ==='selected') {
+          this.model.setMode('viewing');
+        }
+      }, this);
     }
   },
 
