@@ -1,6 +1,7 @@
 tm.Route = Backbone.Model.extend({
-  urlRoot: 'http://' + window.location.host + '/mixes/1/routes',
-
+  urlRoot: function() {
+    return 'http://' + window.location.host + '/mixes/' + tm.mix.get('id') + '/routes';
+  },
 
   defaults: {
     name: 'unnamed',
@@ -32,6 +33,12 @@ tm.Routes = Backbone.Collection.extend({
     // keep one model as interactive at any one time.
     this.interactiveRoute = false;
     this.routeMode = 'viewing';
+
+    this.on('reset', function(col, opts){
+       _.each(opts.previousModels, function(model){
+            model.trigger('remove');
+        });
+    });
   },
 
   getMode: function(route) {

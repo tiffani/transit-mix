@@ -9,6 +9,7 @@ tm.MainView = Backbone.View.extend({
   },
 
   initialize: function() {
+    this.listenTo(this.model, 'change:name', this.updateTitle);
     this.listenTo(this.collection, 'add', this.addOne);
     this.listenTo(this.collection, 'reset', this.addAll);
 
@@ -53,6 +54,10 @@ tm.MainView = Backbone.View.extend({
     this.hideAddButton();
   },
 
+  updateTitle: function() {
+    $('.mapname').html(this.model.get('name'));
+  },
+
   // Save the title as it changes, but don't do excessive calls
   saveTitle: function() {
     if (this.nameTimeout) clearTimeout(this.nameTimeout);
@@ -62,7 +67,7 @@ tm.MainView = Backbone.View.extend({
       var newName = $('.mapname').html();
 
       if (mixName !== newName) {
-        this.model.set('name', newName);
+        this.model.save({name: newName}, {patch: true});
       };
     }, this), 300)
   }

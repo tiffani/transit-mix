@@ -6,7 +6,10 @@ class MixesController < ApplicationController
 
   def show
   end
+
   def update
+    @mix = Mix.find(params[:id])
+    @mix.update_attributes(:name => params[:name])
   end
 
   def destroy

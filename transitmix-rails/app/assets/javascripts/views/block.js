@@ -15,6 +15,7 @@ tm.BlockView = Backbone.View.extend({
     this.listenTo(this.model, 'change', this.render);
     this.listenTo(this.model, 'destroy', this.remove);
     this.listenTo(this.model, 'change:mode', this.combust);
+    this.listenTo(this.model.collection, 'reset', this.remove);
   },
 
   render: function() {

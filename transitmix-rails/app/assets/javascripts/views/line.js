@@ -6,6 +6,7 @@ tm.LineView = Backbone.View.extend({
     this.listenTo(this.model, 'change:polyline', this.updateLine);
     this.listenTo(this.model, 'change:mode', this.updateMode);
     this.listenTo(this.model, 'destroy', this.removeLine);
+    this.listenTo(this.model.collection, 'reset', this.removeLine);
   },
 
   render: function() {
