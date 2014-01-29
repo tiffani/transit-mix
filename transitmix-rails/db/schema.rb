@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128003408) do
+ActiveRecord::Schema.define(version: 20140129001545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,11 +31,22 @@ ActiveRecord::Schema.define(version: 20140128003408) do
 
   add_index "layer", ["schema_name", "table_name", "feature_column"], name: "layer_schema_name_table_name_feature_column_key", unique: true, using: :btree
 
+  create_table "mixes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description"
+    t.string   "name"
+  end
+
   create_table "routes", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "latitude",   precision: 9, scale: 6
-    t.decimal  "longitude",  precision: 9, scale: 6
+    t.decimal  "latitude",    precision: 9, scale: 6
+    t.decimal  "longitude",   precision: 9, scale: 6
+    t.string   "name"
+    t.string   "description"
+    t.string   "color"
+    t.integer  "mix_id"
   end
 
   create_table "spatial_ref_sys", id: false, force: true do |t|
