@@ -1,5 +1,7 @@
 class RoutesController < ApplicationController
   layout nil
+
+  before_action :set_mix, only: [:show, :edit, :update, :destroy, :create]
   before_action :set_route, only: [:show, :edit, :update, :destroy]
 
   protect_from_forgery with: :null_session
@@ -28,8 +30,8 @@ class RoutesController < ApplicationController
   # POST /routes
   # POST /routes.json
   def create
-    @route = Route.new
-    @route.polyline = JSON.parse(params['routes'])[0]['polyline']
+    @route = @mix.routes.build(name: params[:name], description: params[:description])
+    @route.polyline = params['polyline']
 
     respond_to do |format|
       if @route.save
@@ -70,6 +72,10 @@ class RoutesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_route
       @route = Route.find(params[:id])
+    end
+
+    def set_mix
+      @mix = Mix.find(params[:mix_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

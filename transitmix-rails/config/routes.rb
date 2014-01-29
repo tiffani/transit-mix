@@ -1,4 +1,7 @@
 TransitmixRails::Application.routes.draw do
+  root "routes#index"
+  resources :routes
+
   resources :mixes do
     resources :routes
   end

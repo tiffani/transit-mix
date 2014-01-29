@@ -1,9 +1,6 @@
 tm.Route = Backbone.Model.extend({
   urlRoot: 'http://' + window.location.host + '/mixes/1/routes',
 
-  // url: function() {
-
-  // },
 
   defaults: {
     name: 'unnamed',

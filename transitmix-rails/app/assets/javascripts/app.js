@@ -16,8 +16,11 @@ tm.init = function() {
 
   mainView.render();
 
-  $.get('http://' + window.location.host + '/mixes/1.json', function(data) {
+  $.get('http://' + window.location.host + '/mixes/2.json', function(data) {
     routes.reset(data.routes);
+  })
+   $.post('http://' + window.location.host + '/mixes.json', {'name': 'testmix'}, function(data) {
+    console.log(data);
   })
   // pre-filled set of routes.
   // TODO: load these via server call using a URL paramter
