@@ -17,27 +17,6 @@ body {
   top: 0;
 }
 
-.fakeroutes {
-  position: absolute;
-  left: 0;
-  top: 0; 
-  height: 2000px;
-  width: 2000px;
-  background: url(../assets/fakeroutes.png) no-repeat;
-  background-size: 1250px 1200px;
-}
-
-.fakeroutes.disabled {
-  background: url(../assets/disabledroutes.png) no-repeat;
-  background-size: 1250px 1200px;
-}
-
-.fakeroutes.third {
-  background: url(../assets/thirdroute.png) no-repeat;
-  background-size: 1250px 1200px;
-}
-
-
 .ui {
   width: 280px;
   position: absolute;
@@ -48,6 +27,7 @@ body {
 }
 
 .block {
+  position: relative;
 }
 
 .route {
@@ -58,15 +38,26 @@ body {
 }
 
 .title {
-  padding: 22px 16px;
+  padding: 18px 16px;
+  background: #261835;
+}
+
+.headline {
+  font-size: 18px;
+  margin-bottom: 10px;
+  opacity: .7;
+  font-style: italic;
+}
+
+.mapname {
   font-weight: 600;
   font-size: 28px;
-  background: #261835;
+  color: #FFF;
+  outline: none;
 }
 
 .add {
   text-align: right;
-
   position: relative;
   right: 0;
   font-size: 14px;
@@ -103,7 +94,11 @@ input:focus { outline: none; }
   background: #111;
   display: none;
   color: white;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  padding: 12px;
 }
 
 .newname {
@@ -130,7 +125,7 @@ input:focus { outline: none; }
   position: absolute;
   right: -9px;
   top: 8px;
-  background: url(../assets/typeselect.png) no-repeat;
+  background: url(../img/typeselect.png) no-repeat;
   width: 120px;
   height: 60px;
   background-size: 100px 23px;
@@ -148,13 +143,13 @@ input:focus { outline: none; }
 }
 
 .bus {
-  background-image: url(../assets/bus-white.png);
+  background-image: url(../img/bus-white.png);
   background-position: 230px 21px;
   background-repeat: no-repeat;
 }
 
 .train {
-  background-image: url(../assets/train-white.png);
+  background-image: url(../img/train-white.png);
     background-position: 230px 21px;
   background-repeat: no-repeat;
 }
@@ -169,12 +164,12 @@ only screen and (                min-resolution: 192dpi),
 only screen and (                min-resolution: 2dppx) { 
 
   .bus {
-    background-image: url(../assets/bus-white@2x.png);
+    background-image: url(../img/bus-white@2x.png);
     background-size: 29px 32px;
   }
 
   .train {
-    background-image: url(../assets/train-white@2x.png);
+    background-image: url(../img/train-white@2x.png);
     background-size: 26px 32px;
   }
 }
@@ -202,26 +197,31 @@ only screen and (                min-resolution: 2dppx) {
   display: none;
 }
 
-.greencircle {
-  background: #0D7215; 
-  width: 15px;
-  height: 15px;
-  border-radius: 15px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: none;
-}
 
-.doneDrawing {
+
+.finishDrawing {
   position: absolute;
   background: black;
   padding: 10px;
   color: white;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
-.doneDrawing:hover {
+.finishDrawing:hover {
   text-decoration: underline;
+}
+
+.drawBall {
+  width: 25px;
+  height: 25px;
+  margin-left: -12px;
+  margin-top:-12px;
+  border-radius: 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
 }
 
 

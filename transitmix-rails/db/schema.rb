@@ -16,17 +16,12 @@ ActiveRecord::Schema.define(version: 20140129001545) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
-  enable_extension "postgis_topology"
 
-  create_table "layer", id: false, force: true do |t|
-    t.integer "topology_id",                            null: false
-    t.integer "layer_id",                               null: false
-    t.string  "schema_name",    limit: nil,             null: false
-    t.string  "table_name",     limit: nil,             null: false
-    t.string  "feature_column", limit: nil,             null: false
-    t.integer "feature_type",                           null: false
-    t.integer "level",                      default: 0, null: false
-    t.integer "child_id"
+  create_table "mixes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description"
+    t.string   "name"
   end
 
   add_index "layer", ["schema_name", "table_name", "feature_column"], name: "layer_schema_name_table_name_feature_column_key", unique: true, using: :btree
@@ -56,15 +51,6 @@ ActiveRecord::Schema.define(version: 20140129001545) do
     t.string  "srtext",    limit: 2048
     t.string  "proj4text", limit: 2048
   end
-
-  create_table "topology", force: true do |t|
-    t.string  "name",      limit: nil,                 null: false
-    t.integer "srid",                                  null: false
-    t.float   "precision",                             null: false
-    t.boolean "hasz",                  default: false, null: false
-  end
-
-  add_index "topology", ["name"], name: "topology_name_key", unique: true, using: :btree
 
   create_table "vertices", force: true do |t|
     t.decimal  "latitude",   precision: 9, scale: 6

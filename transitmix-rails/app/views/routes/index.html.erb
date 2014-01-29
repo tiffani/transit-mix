@@ -8,37 +8,33 @@
   <meta name="viewport" content="width=device-width">
 
   <!-- TypeKit -->
-  <script type="text/javascript" src="//use.typekit.net/xkd8pzb.js"></script>
+  <script type="text/javascript" src="http://use.typekit.net/xkd8pzb.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-  <!-- MapBox and Leaflet Drawing Extension -->
+  <!-- MapBox -->
   <link href="http://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css" rel="stylesheet" />
   <script src="http://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js"></script>
 
+  <!-- <link rel="stylesheet" href="css/main.css"> -->
   <%= stylesheet_link_tag "main.css" %>
 </head>
 <body>
   <div id="map"></div>
 
-  <!-- <div class="fakeroutes"></div> -->
   <div class="ui">
-    <div class="block title">TransitMix</div>
-    <div class="block route redroute bus">
-      <div class="routename">48</div>
-      <div class="routedesc">Quitiora to Blah</div>
+    <div class="block title">
+      <div class="headline">TransitMix:</div>
+      <div contenteditable class="mapname">Mission Busses</div>
     </div>
+    <div id="routes"></div>
+    <div class="block add"><p>Add Route</p></div>
+  </div>
 
-    <div class="block route blueroute train">
-      <div class="routename">48</div>
-      <div class="routedesc">Quitiora to Blah</div>
-    </div>
+  <script type="text/template" id="tmpl-route">
+    <div class="routename">{{ name }}</div>
+    <div class="routedesc">{{ description }}</div>
 
-    <div class="block route greenroute train">
-      <div class="routename setname">48</div>
-      <div class="routedesc setdesc">Quitiora to Blah</div>
-    </div>
-
-    <div class="block route newroute">
+    <div class="newroute">
       <input class="newname" type="text" placeholder="Route Name" />
       <input class="newdesc" type="text" placeholder="Description" />
       <div class="transittype">
@@ -51,17 +47,21 @@
         Draw!
       </div>
     </div>
-    <div class="block add"><p>Add Route</p></div>
-  </div>
+  </script>
 
-  <div class="greencircle"></div>
+  <script src="assets/vendor/jquery-2.1.0.js"></script>
+  <script src="assets/vendor/underscore-1.5.2.js"></script>
+  <script src="assets/vendor/backbone-1.1.js"></script>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
-  <script src="assets/main.js"></script>
+  <script src="assets/app.js"></script>
+  <script src="assets/models/route.js"></script>
+  <script src="assets/models/mix.js"></script>
+  <script src="assets/views/main.js"></script>
+  <script src="assets/views/line.js"></script>
+  <script src="assets/views/block.js"></script>
+
   <script type="text/javascript">
-    transitmix.init();
+    tm.init();
   </script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 class RoutesController < ApplicationController
+  layout nil
   before_action :set_route, only: [:show, :edit, :update, :destroy]
 
   protect_from_forgery with: :null_session
@@ -7,6 +8,7 @@ class RoutesController < ApplicationController
   # GET /routes.json
   def index
     @routes = Route.all
+    render layout: false
   end
 
   # GET /routes/1
