@@ -155,6 +155,9 @@ tm.LineView = Backbone.View.extend({
   stopSelecting: function() {
     if (!this.selectionCircles) return;
 
+    // save the series of changes
+    this.model.save({patch: true});
+
     this.selectionCircles.forEach(function(circle) {
       this.map.removeLayer(circle);
     }, this);

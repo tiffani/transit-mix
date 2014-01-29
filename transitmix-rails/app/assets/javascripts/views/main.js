@@ -41,7 +41,7 @@ tm.MainView = Backbone.View.extend({
   },
 
   showAddButton: function() {
-    $('.add').slideDown(150);
+    if (!tm.showingAggregate) $('.add').slideDown(150);
   },
 
   hideAddButton: function() {

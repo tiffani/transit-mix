@@ -3,7 +3,7 @@
 tm.BlockView = Backbone.View.extend({
   template: _.template($('#tmpl-route').html()),
 
-  className: 'route bus redroute',
+  className: 'route block redroute',
 
   events: {
     'click': 'select',
@@ -45,7 +45,7 @@ tm.BlockView = Backbone.View.extend({
     this.model.set({
       name: name,
       description: desc,
-      savedOnce: true,
+      // savedOnce: true,
     });
 
     this.model.setMode('drawing');
@@ -57,6 +57,7 @@ tm.BlockView = Backbone.View.extend({
 
   // If we mode change, and it hasn't saved once, destroy it!
   combust: function() {
-    if (!this.model.get('savedOnce') && this.model.getMode() === 'viewing') this.model.destroy();
+    // Disable for the moment
+    // if (!this.model.get('savedOnce') && this.model.getMode() === 'viewing') this.model.destroy();
   },
 });
