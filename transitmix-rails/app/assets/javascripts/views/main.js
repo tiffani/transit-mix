@@ -75,7 +75,11 @@ tm.MainView = Backbone.View.extend({
       var newName = $('.mapname').html();
 
       if (mixName !== newName) {
-        this.model.save({name: newName}, {patch: true});
+        if (tm.mix.get('loadedFromServer')) {
+          tm.ghettoDuplicate(newName);
+        } else {
+          this.model.save({name: newName}, {patch: true});
+        }
       };
     }, this), 300)
   }
