@@ -89,12 +89,12 @@ tm.init = function() {
 };
 
 // duplicate the model for remixing purposes. Can probably do this better.
-tm.ghettoDuplicate = function() {
+tm.ghettoDuplicate = function(name) {
   $.post('http://' + window.location.host + '/mixes.json', function(data) {
     // update the mix
     tm.mix.set({
       id: data.id,
-      name: tm.mix.get('name') + ' Remix',
+      name: name || tm.mix.get('name') + ' Remix',
       loadedFromServer: false,
     });
     tm.router.navigate('mix/' + data.id);
