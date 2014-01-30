@@ -15,6 +15,7 @@ tm.showingAggregate = false;
 tm.DefaultRouter = Backbone.Router.extend({
   routes: {
     'mix/:id': 'loadMix',
+    'new': 'newMix',
     '*path': 'defaultRoute',
   },
 
@@ -27,6 +28,12 @@ tm.DefaultRouter = Backbone.Router.extend({
         id: id,
         name: data.name,
       });
+    });
+  },
+
+  newMix: function() {
+    $.post('http://' + window.location.host + '/mixes.json', function(data) {
+      console.log(data);
     });
   },
 

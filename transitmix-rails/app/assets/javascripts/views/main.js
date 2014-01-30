@@ -4,6 +4,7 @@ tm.MainView = Backbone.View.extend({
   events: {
     'mouseenter .ui': 'showAddButton',
     'mouseleave .ui': 'hideAddButton',
+    'click .newmix': 'createMix',
     'click .add': 'addRoute',
     'keyup': 'saveTitle',
   },
@@ -12,6 +13,7 @@ tm.MainView = Backbone.View.extend({
     this.listenTo(this.model, 'change:name', this.updateTitle);
     this.listenTo(this.collection, 'add', this.addOne);
     this.listenTo(this.collection, 'reset', this.addAll);
+    this.listenTo(this.collection, 'reset', this.render);
 
     var center = [37.778733, -122.421467];
     var defaultZoomLevel = 14;
@@ -23,7 +25,7 @@ tm.MainView = Backbone.View.extend({
   },
 
   render: function() {
-    // no-op
+    tm.showingAggregate ? $('.hello').show() : $('.hello').hide();
   },
 
   addOne: function(route) {
@@ -46,6 +48,10 @@ tm.MainView = Backbone.View.extend({
 
   hideAddButton: function() {
     $('.add').slideUp(150);
+  },
+
+  createMix: function() {
+    tm.router.navigate('new');
   },
 
   addRoute: function() {
