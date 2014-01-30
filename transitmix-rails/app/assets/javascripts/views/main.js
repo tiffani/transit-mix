@@ -51,7 +51,7 @@ tm.MainView = Backbone.View.extend({
   },
 
   createMix: function() {
-    tm.router.navigate('new');
+    tm.router.navigate('new', {trigger: true});
   },
 
   addRoute: function() {
@@ -63,7 +63,7 @@ tm.MainView = Backbone.View.extend({
   },
 
   updateTitle: function() {
-    $('.mapname').html(this.model.get('name'));
+    $('.mapname').html(this.model.get('name') || 'Name Me!');
   },
 
   // Save the title as it changes, but don't do excessive calls

@@ -33,7 +33,14 @@ tm.DefaultRouter = Backbone.Router.extend({
 
   newMix: function() {
     $.post('http://' + window.location.host + '/mixes.json', function(data) {
-      console.log(data);
+      tm.showingAggregate = false;
+
+      tm.router.navigate('/mix/' + data.id);
+      tm.mix.set({
+        id: data.id,
+        name: data.name
+      });
+      tm.routes.reset();
     });
   },
 
