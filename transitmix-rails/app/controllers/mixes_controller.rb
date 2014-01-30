@@ -1,5 +1,6 @@
 class MixesController < ApplicationController
   protect_from_forgery with: :null_session
+  respond_to :html, :json
   
   def edit
   end
@@ -19,7 +20,8 @@ class MixesController < ApplicationController
   end
 
   def create
-    @mix = Mix.create(name: params[:name])
+    mix = Mix.create(name: params[:name])
+    respond_with(mix)
   end
 
   def index
