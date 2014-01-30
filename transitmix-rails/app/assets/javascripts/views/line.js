@@ -165,7 +165,11 @@ tm.LineView = Backbone.View.extend({
     if (!this.selectionCircles) return;
 
     // save the series of changes
-    this.model.save({patch: true});
+    // if (tm.mix.get('loadedFromServer')) {
+    //   tm.ghettoDuplicate();
+    // } else {
+      this.model.save({patch: true});
+    // }
     this.removeSelectionCircles();
   },
 
