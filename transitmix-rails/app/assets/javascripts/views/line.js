@@ -166,13 +166,18 @@ tm.LineView = Backbone.View.extend({
 
     // save the series of changes
     this.model.save({patch: true});
+    this.removeSelectionCircles();
+  },
 
+  removeSelectionCircles: function() {
+    if (!this.selectionCircles) return;
     this.selectionCircles.forEach(function(circle) {
       this.map.removeLayer(circle);
     }, this);
   },
 
   removeLine: function() {
+    this.removeSelectionCircles();
     this.map.removeLayer(this.line);
     this.remove();
   }
