@@ -48,7 +48,7 @@ class RoutesController < ApplicationController
   # PATCH/PUT /routes/1.json
   def update
     respond_to do |format|
-      if @route.update(route_params)
+      if @route.vertices.clear && @route.update(route_params)
         format.html { redirect_to @route, notice: 'Route was successfully updated.' }
         format.json { head :no_content }
       else
@@ -80,6 +80,6 @@ class RoutesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def route_params
-      params[:route]
+      params.permit(:id, :name, :description, :routeType, :mix_id, :color, polyline: [:lat, :lng], vertices_attributes: [:id])
     end
 end

@@ -27,6 +27,7 @@ tm.DefaultRouter = Backbone.Router.extend({
       tm.mix.set({
         id: id,
         name: data.name,
+        loadedFromServer: true,
       });
     });
   },
@@ -38,7 +39,8 @@ tm.DefaultRouter = Backbone.Router.extend({
       tm.router.navigate('/mix/' + data.id);
       tm.mix.set({
         id: data.id,
-        name: data.name
+        name: data.name,
+        loadedFromServer: false,
       });
       tm.routes.reset();
     });
@@ -85,5 +87,23 @@ tm.init = function() {
   //             {"name":"51X","description":"Upendside to Notam","savedOnce":"true","color":"#0071CA","polyline":[{"lat":37.74811842660096,"lng":-122.41936683654784},{"lat":37.77281794785716,"lng":-122.42202758789061},{"lat":37.78787789236924,"lng":-122.40348815917969},{"lat":37.79676317682161,"lng":-122.40511894226076},{"lat":37.80035768295354,"lng":-122.4103546142578},{"lat":37.799543847826506,"lng":-122.41739273071288},{"lat":37.80218877920469,"lng":-122.41790771484375},{"lat":37.801374964252865,"lng":-122.42443084716797},{"lat":37.80415546165205,"lng":-122.4250316619873},{"lat":37.80340948481954,"lng":-122.43146896362306},{"lat":37.80544394934274,"lng":-122.43189811706542}]}];
   
 };
+
+// duplicate the model for remixing purposes. Can probably do this better.
+tm.ghettoDuplicate = function() {
+  $.post('http://' + window.location.host + '/mixes.json', function(data) {
+    // update the mix
+    tm.mix.set({
+      id: data.id,
+      name: tm.mix.get('name') + ' Remix',
+      loadedFromServer: false,
+    });
+    tm.router.navigate('mix/' + data.id);
+
+    tm.routes.each(function(route) {
+      route.id = undefined;
+      route.save()
+    });
+  });
+}
 
 
